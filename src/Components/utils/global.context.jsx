@@ -1,15 +1,17 @@
 import { createContext } from "react";
 
-export const initialState = {theme: "", data: []}
+{/*const initialState = {theme: "", data: []}*/}
 
-export const ContextGlobal = createContext(undefined);
+const DentistContext = createContext();
 
-export const ContextProvider = ({ children }) => {
+const Context = ({ children }) => {
   //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
 
   return (
-    <ContextGlobal.Provider value={{}}>
+    <DentistContext.Provider value={{}}>
       {children}
-    </ContextGlobal.Provider>
+    </DentistContext.Provider>
   );
 };
+
+export default Context;

@@ -1,22 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
+const Card = ({ name, username, id, updateFavs }) => {
+  const [favorite, setFavorite] = useState(false)
 
-const Card = ({ name, username, id }) => {
+  // Verificar estado inicial de favorito
+  useEffect(() => {
+    const favs = JSON.parse(localStorage.getItem('favs') || '[]')
+    setFavorite(favs.some(fav => fav.id === id))
+  }, [id])
 
-  const addFav = ()=>{
-    // Aqui iria la logica para agregar la Card en el localStorage
+  const toggleFav = () => {
+    const favs = JSON.parse(localStorage.getItem('favs') || '[]')
+    
+    if (favorite) {
+      // Remover de favoritos
+      const updatedFavs = favs.filter(fav => fav.id !== id)
+      localStorage.setItem('favs', JSON.stringify(updatedFavs))
+    } else {
+      // Agregar a favoritos
+      const newFav = { id, name, username }
+      localStorage.setItem('favs', JSON.stringify([...favs, newFav]))
+    }
+
+    // Actualizar estado local inmediatamente
+    setFavorite(!favorite)
+    
+    // Si existe la función updateFavs (en la página de favoritos), la llamamos
+    if (updateFavs) updateFavs()
   }
 
   return (
-    <div className="card">
-        {/* En cada card deberan mostrar en name - username y el id */}
-
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
-
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
+    <div className="card-grid">
+      <Link to={`/detail/${id}`}>
+        <img src={`/images/doctor.jpg`} alt={name} className="card-image" />
+        <h3>{name}</h3>
+        <p>{username}</p>
+      </Link>
+      
+      <button 
+        onClick={toggleFav} 
+        className={`favButton ${favorite ? 'active' : ''}`}
+      >
+        {favorite ? '❤️ Remove fav' : '🤍 Add fav'}
+      </button>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
