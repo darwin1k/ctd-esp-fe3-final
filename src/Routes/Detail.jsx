@@ -1,11 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ContextGlobal } from '../Components/utils/global.context';
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
+  const { state } = useContext(ContextGlobal);
   const [dentist, setDentist] = useState({});
   const {id} = useParams();
 
@@ -15,13 +17,13 @@ const Detail = () => {
       .then(data => {
         setDentist(data);
       })
-  }, []);
+  }, [id]);
 
   return (
-    <>
+    <div className={state.theme}>
       <h1>Detalle del Dentista</h1>
       {dentist && (
-        <table>
+        <table className={`table ${state.theme}`}>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -40,7 +42,7 @@ const Detail = () => {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 }
 

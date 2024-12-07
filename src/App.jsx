@@ -6,10 +6,12 @@ import Contact from './Routes/Contact';
 import Detail from './Routes/Detail';
 import Favs from './Routes/Favs';
 import Layout from './Layouts/layout';
+import { ContextProvider } from './Components/utils/global.context';
 
 function App() {
   return (
-  
+    <ContextProvider>
+      
       <div className="App">
         
         <Routes>
@@ -22,6 +24,8 @@ function App() {
           </Route>
         </Routes>
       </div>
+      
+    </ContextProvider>
   );
 }
 

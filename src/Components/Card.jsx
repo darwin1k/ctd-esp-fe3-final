@@ -1,48 +1,32 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { ContextGlobal } from "./utils/global.context"
+import { useContext } from "react"
 
-const Card = ({ name, username, id, updateFavs }) => {
-  const [favorite, setFavorite] = useState(false)
+const Card = ({ name, username, id }) => {
+  const { state, dispatch } = useContext(ContextGlobal);
 
-  // Verificar estado inicial de favorito
-  useEffect(() => {
-    const favs = JSON.parse(localStorage.getItem('favs') || '[]')
-    setFavorite(favs.some(fav => fav.id === id))
-  }, [id])
+  const isFavorite = state.favs.some(fav => fav.id === id);
 
   const toggleFav = () => {
-    const favs = JSON.parse(localStorage.getItem('favs') || '[]')
-    
-    if (favorite) {
-      // Remover de favoritos
-      const updatedFavs = favs.filter(fav => fav.id !== id)
-      localStorage.setItem('favs', JSON.stringify(updatedFavs))
+    if (isFavorite) {
+      dispatch({ type: 'REMOVE_FAV', payload: { id } });
     } else {
-      // Agregar a favoritos
-      const newFav = { id, name, username }
-      localStorage.setItem('favs', JSON.stringify([...favs, newFav]))
+      const fav = { name, username, id };
+      dispatch({ type: 'ADD_FAV', payload: fav });
+      alert(`${name} se agregó a favoritos`);
     }
-
-    // Actualizar estado local inmediatamente
-    setFavorite(!favorite)
-    
-    // Si existe la función updateFavs (en la página de favoritos), la llamamos
-    if (updateFavs) updateFavs()
-  }
+  };
 
   return (
-    <div className="card-grid">
+    <div className="card">
       <Link to={`/detail/${id}`}>
-        <img src={`/images/doctor.jpg`} alt={name} className="card-image" />
+        <img src={`/images/doctor.jpg`} alt={name} className="card-img" />
         <h3>{name}</h3>
         <p>{username}</p>
       </Link>
-      
-      <button 
-        onClick={toggleFav} 
-        className={`favButton ${favorite ? 'active' : ''}`}
-      >
-        {favorite ? '❤️ Remove fav' : '🤍 Add fav'}
+      <button onClick={toggleFav} className={`favButton ${isFavorite ? 'active' : ''}`}>
+        {isFavorite ? '❤️ Remove fav' : '🤍 Add fav'}
       </button>
     </div>
   )

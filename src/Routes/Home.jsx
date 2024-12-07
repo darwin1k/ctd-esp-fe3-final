@@ -1,34 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import Card from '../Components/Card'
+import { ContextGlobal } from '../Components/utils/global.context'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
-  const [dentists, setDentists] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { state, dispatch } = useContext(ContextGlobal);
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
-      .then(data => {
-        setDentists(data)
-        setLoading(false)
-      })
-      .catch(err => {
-        console.error('Error obteniendo dentistas:', err)
-        setLoading(false)
-      })
-  }, [])
+      .then(data => dispatch({ type: 'SET_DENTISTS', payload: data }));
+    }, [dispatch]);
 
   return (
-    <>
+    < >
       <h1>Home</h1>
-      {loading ? (
-        <p>Cargando dentistas...</p>
-      ) : (
         <div className='card-grid'>
-          {dentists.map(dentist => (
+          {state.dentists.map(dentist => (
             <Card 
             key={dentist.id} 
             name={dentist.name} 
@@ -37,7 +27,7 @@ const Home = () => {
             />
           ))}
         </div>
-      )}
+      
     </>
   )
 }

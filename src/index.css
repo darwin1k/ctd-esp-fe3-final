@@ -1,148 +1,438 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-.favButton{
-  background-color: rgba(136, 136, 136, 0.116);
-  padding: 10px;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-}
-
-h1{
-  text-align: center;
-}
-
-nav{
-  display: flex;
-  width: 80vw;
-  justify-content: flex-start;
-  padding: 1rem;
-}
-
-a{
-  color: #000;
-  text-decoration: none;
-  margin: 5px;
-  cursor: pointer;
-}
-a:hover{
-  color: rgb(136, 136, 136);
-} 
-
-footer {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  bottom: 0;
-  width: 90%;
-  height: 40px;
-  margin-top: 2rem;
-}
-
-footer > img{
-  width: 200px;
-  margin: 0;
-}
-footer > p{
-  margin: 0;
-  padding-top: 0.7rem;
-}
-
-form{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  width: 300px;
-  height: 100px;
-  margin: 0 auto;
+  transition: background-color 0.3s, color 0.3s;
+  
 }
 
-.card{
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left span {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffdd57;
+}
+
+
+.content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px;
-  position: relative;
-  width: 200px;
+  justify-content: center;
+  padding: 2rem;
+  background-color: inherit; 
+}
+
+.main-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s ease;
+  border: 2px solid #007bff; /* Borde delgado azul */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+  width: 100%;
   height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.card-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+
+footer {
+  padding: 1rem;
+  background-color: #0056b3;
+  color: white;
   text-align: center;
 }
 
-.card:hover{
-  border: 0.5px solid rgb(206, 217, 142);
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 2rem auto 0 auto;
+  padding: 1rem 0;
 }
 
-.card-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-.card-image {
-  width: 100px;  /* Ancho más pequeño */
-  height: 100px; /* Alto más pequeño */
-  object-fit: cover;
-  border-radius: 50%; /* Opcional: hace la imagen circular */
-  margin-bottom: 10px;
+.footer-left {
+  display: flex;
+  align-items: center;
 }
 
-table {
- border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    display: table;
-    border: 1px solid #ccc;
-
+.footer-logo {
+  width: 200px;
+  margin-left: 10px;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+.footer-right a {
+  margin: 0 10px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.social-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(0);
 }
 
-.dark{
-  background-color: #12121296;
+.footer-right a:hover .social-icon {
+  opacity: 0.7;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #3d3c3c;
+}
+
+.light .navbar {
+  background-color: #007bff;
+}
+
+.light .card {
+  background-color: white;
+  border: 2px solid #007bff;
+}
+
+.light .card-button {
+  background-color: #007bff;
+}
+
+.light .card-button:hover {
+  background-color: #0056b3;
+}
+
+
+.dark {
+  background-color: #1a1a1a;
   color: white;
 }
+
 .dark > a {
   color: white;
 }
 
-.card a {
-  text-decoration: none;
+.dark .navbar {
+  background-color: #555454;
+}
+
+.dark .footer {
+  background-color: #333;
+}
+
+.dark .card {
+  background-color: #333;
+  border: 2px solid #007bff;
+}
+
+.dark .card:hover {
+  border: 2px solid #0056b3;
+}
+
+.dark .card-title, .dark .card-description {
+  color: white;
+}
+
+.dark .card-button {
+  background-color: #666;
+}
+
+.dark .card-button:hover {
+  background-color: #444;
+}
+
+
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: inherit; 
+  border: 2px solid #007bff; 
+  border-radius: 10px; 
+  max-width: 800px;
+  margin: 3rem auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: inherit; 
+}
+
+
+.contact-description {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2rem;
   color: inherit;
 }
 
-.favButton {
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* Ajusta según tus necesidades */
+  max-width: 400px; /* Limita el tamaño máximo */
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  border: 2px solid #007bff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.favButton.active {
-  background-color: #ffebee;
-  color: #d32f2f;
+.contact-form.light {
+  background-color: #f9f9f9; /* Fondo claro */
+  color: #333;               /* Texto oscuro */
+}
+
+/* Estilos para el tema oscuro */
+.contact-form.dark {
+  background-color: #444; /* Fondo oscuro */
+  color: #fff;            /* Texto claro */
+}
+
+
+.contact-form input,
+.contact-form textarea {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #007bff; 
+  background-color: #fff;
+  color: #333;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0056b3; 
+  outline: none; 
+}
+
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 150px; 
+}
+
+
+.contact-form button {
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s ease;
+  align-self: center; 
+  width: 50%; 
+  margin-top: 1rem; 
+}
+
+
+.contact-form button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.9rem;
+  }
+
+  .contact-form button {
+    font-size: 1rem;
+    width: 100%; 
+  }
+}
+
+.contact-page {
+  display: flex;
+  flex-direction: column;   /* Cambiado a columna para apilar elementos */
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
+  height: 100vh;           /* Ocupa toda la altura de la ventana */
+  transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Estilos para el tema claro */
+.contact-page.light {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #000000;            /* Texto negro */
+}
+
+/* Estilos para el tema oscuro */
+.contact-page.dark {
+  background-color: #333333; /* Fondo gris oscuro */
+  color: #ffffff;            /* Texto blanco */
+}
+
+/* Estilos adicionales para los elementos de texto */
+.contact-page h2 {
+  margin-bottom: 1rem; /* Espacio entre h2 y p */
+}
+
+.contact-page p {
+  margin-bottom: 2rem; /* Espacio entre p y Form */
+}
+
+.table {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-collapse: collapse; /* Elimina el espacio entre celdas */
+  margin-top: 1rem; /* Espacio superior */
+}
+
+/* Estilos para las celdas de la tabla */
+.table th, .table td {
+  padding: 12px; /* Espaciado interno */
+  text-align: left; /* Alineación del texto */
+  border: 1px solid #ddd; /* Borde gris claro */
+}
+
+/* Estilos para los encabezados de la tabla */
+.table th {
+  background-color: #007bff; /* Fondo azul para encabezados */
+  color: white; /* Texto blanco */
+}
+
+/* Estilos para el tema claro */
+.table.light {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #000000; /* Texto negro */
+}
+
+/* Estilos para el tema oscuro */
+.table.dark {
+  background-color: #444; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+.table.dark th {
+  background-color: #555; /* Fondo más oscuro para encabezados en tema oscuro */
+}
+
+.form-error {
+  color: #ff4141; /* Color rojo para errores */
+  background-color: #ffe6e6; /* Fondo claro para resaltar el error */
+  border: 1px solid #ff4141; /* Borde rojo */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 10px; /* Espacio superior */
+}
+
+/* Estilos para mensajes de éxito */
+.form-success {
+  color: #28a745; /* Color verde para éxito */
+  background-color: #e6ffe6; /* Fondo claro para resaltar el éxito */
+  border: 1px solid #28a745; /* Borde verde */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 10px; /* Espacio superior */
 }
